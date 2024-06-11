@@ -1,3 +1,5 @@
+if (require('electron-squirrel-startup') === true) app.quit();
+
 const { app, BrowserWindow } = require('electron')
 
 const createWindow = () => {
@@ -17,6 +19,7 @@ app.whenReady().then(() => {
   })
 })
 
+if (require('electron-squirrel-startup') === true) app.quit();
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit()

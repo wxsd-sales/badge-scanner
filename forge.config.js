@@ -4,6 +4,7 @@ const { FuseV1Options, FuseVersion } = require('@electron/fuses');
 module.exports = {
   packagerConfig: {
     asar: true,
+    icon: path.join(process.cwd(), 'main', 'build', 'icon'),
   },
   rebuildConfig: {},
   makers: [
@@ -17,11 +18,19 @@ module.exports = {
     },
     {
       name: '@electron-forge/maker-deb',
-      config: {},
+      config: {
+        bin: 'Electron Starter',
+        options: {
+          icon: path.join(process.cwd(), 'main', 'build', 'icon.png'),
+        },
+      }
     },
     {
       name: '@electron-forge/maker-rpm',
-      config: {},
+      config: {
+        bin: 'Electron Starter',
+        icon: path.join(process.cwd(), 'main', 'build', 'icon.png'),
+      }
     },
   ],
   plugins: [
@@ -41,4 +50,16 @@ module.exports = {
       [FuseV1Options.OnlyLoadAppFromAsar]: true,
     }),
   ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'delimitertech',
+          name: 'electron-starter'
+        },
+        prerelease: true
+      }
+    }
+  ]
 };
