@@ -2,18 +2,15 @@
 
 Example Web App which connects to a RoomOS device and displays badge scans
 
+![WebApp Screenshot](/images/screenshot1.png)
 
 ## Overview
 
-Go into detail about the implementation.   3-4 Sentences
-**HOW** the implementation works. You need not give end-to-end details but an overview.
+This Web App connected directly to a RoomOS device via a WebSocket connection and monitors badge scans from an Identification Badge scanner connected to the RoomOS Device.
 
+Many USB Badge Scanners support keyboard emulation and generate keystrokes for the scanned badge. The Web App monitors and collects these keystrokes via the xAPI Event [xEvent UserInterface InputDevice Key Action](https://roomos.cisco.com/xapi/Event.UserInterface.InputDevice.Key.Action/) to build an identification string.
 
-
-### Flow Diagram
-
-<!-- *MANDATORY*  Insert Your Flow Diagram Here (if small PoC, alternative option is to include break down how it works here instead of diagram) -->
-![image/gif](insert img link here)
+Once the identification string had been collected, it is displayed as a pop-up modal alert for the Web App operator to easily copy and paste into their identification tools.
 
 
 
@@ -41,15 +38,9 @@ Go into detail about the implementation.   3-4 Sentences
     
 ## Demo
 
-<!-- Insert link to the website below (if deployed). -->
-Check out our live demo, available [here](<insert link>)!
-
 <!-- Keep the following statement -->
 *For more demos & PoCs like this, check out our [Webex Labs site](https://collabtoolbox.cisco.com/webex-labs).
 
-
-<!-- Update your vidcast title, video screenshot, vidcast/youtube link & name -->
-[![Your Video Title ](assets/peer_support_main.PNG)](https://www.youtube.com/watch?v=SqZhiC8jHhU&t=10s, "<insert demo name here>")
 
 
 
@@ -64,4 +55,4 @@ Everything included is for demo and Proof of Concept purposes only. Use of the s
 
 
 ## Questions
-Please contact the WXSD team at [wxsd@external.cisco.com](mailto:wxsd@external.cisco.com?subject=RepoName) for questions. Or, if you're a Cisco internal employee, reach out to us on the Webex App via our bot (globalexpert@webex.bot). In the "Engagement Type" field, choose the "API/SDK Proof of Concept Integration Development" option to make sure you reach our team. 
+Please contact the WXSD team at [wxsd@external.cisco.com](mailto:wxsd@external.cisco.com?subject=badge-scanner) for questions. Or, if you're a Cisco internal employee, reach out to us on the Webex App via our bot (globalexpert@webex.bot). In the "Engagement Type" field, choose the "API/SDK Proof of Concept Integration Development" option to make sure you reach our team. 
