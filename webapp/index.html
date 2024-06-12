@@ -57,6 +57,7 @@
               <h4
                 id="waitingText"
                 class="title is-4"
+                style="visibility: hidden; display: none"
               >
                 Waiting for <i class="fa-solid fa-address-card"></i> Badge Scan
               </h4>
@@ -162,7 +163,7 @@
           <div class="field">
             <div class="control">
               <div class="buttons is-centered">
-                <button onclick="disconnect()" class="button is-success">
+                <button onclick="connectToDevice()" class="button is-success">
                   Connect
                 </button>
                 <button onclick="cancelDisconnect()" class="button is-danger">
@@ -186,9 +187,6 @@
           <div class="field has-addons">
             <p class="control">
                 <button type="submit" class="button is-primary is-large">
-                    
-
-
                     <span class="icon">
                         <i class="fa-solid fa-address-card"></i>
                       </span>
@@ -229,7 +227,7 @@
           <div class="field">
             <div class="control">
               <div class="buttons is-centered">
-                <button onclick="connectToDevice()" class="button is-success">
+                <button onclick="disconnect()" class="button is-success">
                   Confirm
                 </button>
                 <button onclick="closeAllModals()" class="button is-danger">
@@ -386,11 +384,13 @@
       function showDisconnected() {
         connectionStatus.innerHTML = "Not Connected";
         hideElement(buttonGroup);
+        hideElement(waitingText)
         showElement(connectButton);
       }
 
       function showConnected(workspaceName) {
         hideElement(connectButton);
+        showElement(waitingText);
         showElement(buttonGroup);
         console.log("Device Name", workspaceName);
         connectionStatus.innerHTML = "Connected:</br>" + workspaceName;

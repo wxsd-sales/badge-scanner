@@ -5,7 +5,7 @@ const path = require('path');
 module.exports = {
   packagerConfig: {
     asar: true,
-    icon: path.join(process.cwd(), 'main', 'images', 'icon'),
+    //icon: path.join(process.cwd(), 'main', 'images', 'icon'),
   },
   rebuildConfig: {},
   makers: [
@@ -22,7 +22,7 @@ module.exports = {
       config: {
         bin: 'Electron Starter',
         options: {
-          icon: path.join(process.cwd(), 'main', 'images', 'icon.png'),
+          //icon: path.join(process.cwd(), 'main', 'images', 'icon.png'),
         },
       }
     },
@@ -30,7 +30,7 @@ module.exports = {
       name: '@electron-forge/maker-rpm',
       config: {
         bin: 'Electron Starter',
-        icon: path.join(process.cwd(), 'main', 'images', 'icon.png'),
+        //icon: path.join(process.cwd(), 'main', 'images', 'icon.png'),
       }
     },
   ],
