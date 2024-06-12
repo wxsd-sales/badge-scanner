@@ -32,12 +32,13 @@
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item">
-            <img
-              src="https://developer.webex.com/favicon.ico"
-              alt="Logo"
-              height="80"
-            />
-            <h4 class="title is-3 pl-4">Badge Scanner</h4>
+            <h4 class="title is-3 pl-4">
+                <span class="icon-text">
+                <span class="icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </span>
+                <span>Badge Scanner</span>
+              </span></h4>
           </a>
         </div>
       </div>
@@ -61,34 +62,37 @@
               >
                 Waiting for <i class="fa-solid fa-address-card"></i> Badge Scan
               </h4>
+              <div id="buttonGroup" style="visibility: hidden; display: none">
+                <div class="field has-addons has-addons-centered">
+                  <p class="control">
+                    <button
+                      id="history"
+                      class="button is-warning is-large js-modal-trigger"
+                      data-target="historyModal"
+                    >
+                      <span class="icon is-large">
+                        <i class="fa-solid fa-book"></i>
+                      </span>
+                      <span>History</span>
+                    </button>
+                  </p>
+                </div>
 
-              <div
-                id="buttonGroup"
-                class="buttons is-centered"
-                style="visibility: hidden; display: none"
-              >
-                <button
-                  id="disconnectButton"
-                  class="button is-danger is-large js-modal-trigger"
-                  data-target="disconnectModal"
-                >
-                  <span class="icon is-large">
-                    <i class="fa-solid fa-tv"></i>
-                  </span>
-                  <span>Disconnect</span>
-                </button>
-                <button
-                  id="history"
-                  class="button is-warning is-large js-modal-trigger"
-                  data-target="historyModal"
-                >
-                  <span class="icon is-large">
-                    <i class="fa-solid fa-book"></i>
-                  </span>
-                  <span>History</span>
-                </button>
+                <div class="field has-addons has-addons-centered">
+                  <p class="control">
+                    <button
+                      id="disconnectButton"
+                      class="button is-danger is-large js-modal-trigger"
+                      data-target="disconnectModal"
+                    >
+                      <span class="icon is-large">
+                        <i class="fa-solid fa-tv"></i>
+                      </span>
+                      <span>Disconnect</span>
+                    </button>
+                  </p>
+                </div>
               </div>
-
               <button
                 id="connectButton"
                 class="button is-success is-dark is-large js-modal-trigger"
@@ -163,10 +167,10 @@
           <div class="field">
             <div class="control">
               <div class="buttons is-centered">
-                <button onclick="connectToDevice()" class="button is-success">
+                <button onclick="connect()" class="button is-success">
                   Connect
                 </button>
-                <button onclick="cancelDisconnect()" class="button is-danger">
+                <button onclick="cancelConnect()" class="button is-danger">
                   Cancel
                 </button>
               </div>
@@ -186,12 +190,12 @@
 
           <div class="field has-addons">
             <p class="control">
-                <button type="submit" class="button is-primary is-large">
-                    <span class="icon">
-                        <i class="fa-solid fa-address-card"></i>
-                      </span>
-                    </button>
-              </p>
+              <button type="submit" class="button is-primary is-large">
+                <span class="icon">
+                  <i class="fa-solid fa-address-card"></i>
+                </span>
+              </button>
+            </p>
             <div class="control is-expanded">
               <input
                 id="badgeText"
@@ -242,221 +246,48 @@
     </div>
 
     <div id="historyModal" class="modal">
-        <div class="modal-background"></div>
-  
-        <div class="modal-content">
-          <div class="box is-flex is-flex-direction-column is-align-items-center">
-            <h4 class="title is-3 pl-3">Previous Badge Scans</h4>
-            <div class="field">
-              <div class="control">
-                <div class="buttons is-centered">
-                  <button onclick="connectToDevice()" class="button is-success">
-                    Confirm
-                  </button>
-                  <button onclick="closeAllModals()" class="button is-danger">
-                    Cancel
-                  </button>
-                </div>
+      <div class="modal-background"></div>
+
+      <div class="modal-content">
+        <div class="box is-flex is-flex-direction-column is-align-items-center">
+          <h4 class="title is-3 pl-3">Previous Badge Scans</h4>
+          <table id="historyTable" class="table is-bordered">
+            <thead >
+                <tr>
+                  <th>Time</th>
+                  <th>Scan</th>
+                </tr>
+              </thead>
+            <tbody id="historyBody">
+              
+                <tr>
+                  <th>13:42</th>
+                  <td>asdfasdfas</td>
+                </tr>
+                <tr>
+                    <th>13:42</th>
+                    <td>asdfasdfas</td>
+                  </tr>
+                  <tr>
+                    <th>13:42</th>
+                    <td>asdfasdfas</td>
+                  </tr>
+            </tbody>
+          </table>
+          <div class="field">
+            <div class="control">
+              <div class="buttons is-centered">
+                <button onclick="closeAllModals()" class="button is-danger">
+                  Close
+                </button>
               </div>
             </div>
           </div>
         </div>
-        <button class="modal-close is-large" aria-label="close"></button>
       </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
 
-    <script>
-      const ipAddress = document.getElementById("ipAddress");
-      const username = document.getElementById("username");
-      const password = document.getElementById("password");
-      const cardTitle = document.getElementById("cardTitle");
-      const connectButton = document.getElementById("connectButton");
-      const disconnectButton = document.getElementById("disconnectButton");
-      const cancelButton = document.getElementById("cancelButton");
-      const buttonGroup = document.getElementById("buttonGroup");
-
-      const waitingText = document.getElementById("waitingText");
-      const scanModal = document.getElementById("scanModal");
-      const connectModal = document.getElementById("connectModal");
-      const badgeText = document.getElementById("badgeText");
-      const connectionStatus = document.getElementById("connectionStatus");
-
-      let creds;
-      let xapi;
-      let keySequence = [];
-      let keyCombo = [];
-
-      const restored = localStorage.getItem("checkpointCreds");
-      if (restored) creds = JSON.parse(atob(restored));
-      if (creds) {
-        connectToDevice();
-      } else {
-        showDisconnected();
-      }
-
-      console.log("creds", creds);
-
-      function connectToDevice() {
-        if (!creds) creds = getInputs();
-
-        if (!creds) {
-          console.log("No Credes");
-          return;
-        }
-
-        console.log("Connecting:", creds);
-
-        jsxapi
-          .connect("wss://" + creds.ipAddress, {
-            username: creds.username,
-            password: creds.password,
-          })
-          .on("error", console.error)
-          .on("ready", async (connection) => {
-            xapi = connection;
-            localStorage.setItem(
-              "checkpointCreds",
-              btoa(JSON.stringify(creds))
-            );
-            console.log("Connected");
-            closeAllModals();
-            const deviceName =
-              await xapi.Status.UserInterface.ContactInfo.Name.get();
-            showConnected(deviceName);
-
-            // Subscribe to Key Action Events and Process them
-            xapi.Event.UserInterface.InputDevice.Key.Action.on((event) => {
-              console.debug(event);
-
-              const key = event.Key.split("_").pop().toLowerCase();
-
-              // Store all new keys except an 'enter' key to the keyCombo array
-              if (event.Type == "Pressed" && key != "enter") {
-                keyCombo.push(key);
-                return;
-              }
-
-              // Transfer keyCombos to KeySequence and handle uppercasing
-              if (event.Type == "Released" && key != "enter") {
-                if (keyCombo.length == 2 && keyCombo[0].endsWith("shift")) {
-                  console.log("Storing Key:", key);
-                  keySequence.push(keyCombo.pop().toUpperCase());
-                  keyCombo = [];
-                } else {
-                  console.log("Adding to sequence Key:", keyCombo);
-                  keySequence.push(keyCombo.pop());
-                }
-                return;
-              }
-
-              // Once 'enter' released detected, output the collected key sequence and reset buffer
-              if (event.Type == "Released" && key == "enter") {
-                const keyCode = keySequence.join("");
-                displayScan(keyCode);
-                keySequence = [];
-              }
-            });
-          });
-      }
-
-      function getInputs() {
-        return {
-          ipAddress: ipAddress.value,
-          username: username.value,
-          password: password.value,
-        };
-      }
-
-      function hideElement(element) {
-        element.style.visibility = "hidden";
-        element.style.display = "none";
-      }
-
-      function showElement(element) {
-        element.style.visibility = "visible";
-        element.style.display = "block";
-      }
-
-      function displayScan(code) {
-        badgeText.value = code;
-        openModal(scanModal);
-      }
-
-      function showDisconnected() {
-        connectionStatus.innerHTML = "Not Connected";
-        hideElement(buttonGroup);
-        hideElement(waitingText)
-        showElement(connectButton);
-      }
-
-      function showConnected(workspaceName) {
-        hideElement(connectButton);
-        showElement(waitingText);
-        showElement(buttonGroup);
-        console.log("Device Name", workspaceName);
-        connectionStatus.innerHTML = "Connected:</br>" + workspaceName;
-      }
-
-      function copyToClipboard() {
-        const currentValue = badgeText.value;
-        navigator.clipboard.writeText(currentValue);
-        console.log("Copied to Clipboard", currentValue);
-      }
-
-      function disconnect() {
-        if (creds) {
-          console.log("Signing Out");
-          localStorage.removeItem("checkpointCreds");
-          window.location.reload();
-        }
-      }
-
-   
-      // Functions to open and close a modal
-      function openModal($el) {
-        $el.classList.add("is-active");
-      }
-
-      function closeModal($el) {
-        $el.classList.remove("is-active");
-      }
-
-      function closeAllModals() {
-        (document.querySelectorAll(".modal") || []).forEach(($modal) => {
-          closeModal($modal);
-        });
-      }
-
-      // Add a click event on buttons to open a specific modal
-      (document.querySelectorAll(".js-modal-trigger") || []).forEach(
-        ($trigger) => {
-          const modal = $trigger.dataset.target;
-          const $target = document.getElementById(modal);
-
-          $trigger.addEventListener("click", () => {
-            openModal($target);
-          });
-        }
-      );
-
-      // Add a click event on various child elements to close the parent modal
-      (
-        document.querySelectorAll(
-          ".modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button"
-        ) || []
-      ).forEach(($close) => {
-        const $target = $close.closest(".modal");
-
-        $close.addEventListener("click", () => {
-          closeModal($target);
-        });
-      });
-
-      // Add a keyboard event to close all modals
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-          closeAllModals();
-        }
-      });
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
