@@ -4,7 +4,7 @@ const path = require('path');
 
 module.exports = {
   packagerConfig: {
-    executableName: "Badge Scanner",
+    executableName: "badge-scanner",
     asar: true,
     //icon: path.join(process.cwd(), 'main', 'images', 'icon'),
   },
@@ -12,30 +12,47 @@ module.exports = {
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
-      executableName: "Badge Scanner",
-      config: {},
+      executableName: "badge-scanner",
+      onfig: {
+        options: {
+          name: 'badge-scanner',
+          productName: 'badge-scanner'
+          //icon: path.join(process.cwd(), 'main', 'images', 'icon.png'),
+        },
+      }
     },
     {
       name: '@electron-forge/maker-zip',
-      executableName: "Badge Scanner",
+      executableName: "badge-scanner",
       platforms: ['darwin'],
+      onfig: {
+        options: {
+          name: 'badge-scanner',
+          productName: 'badge-scanner'
+          //icon: path.join(process.cwd(), 'main', 'images', 'icon.png'),
+        },
+      }
     },
     {
       name: '@electron-forge/maker-deb',
-      executableName: "Badge Scanner",
+      executableName: "badge-scanner",
       config: {
-        bin: 'Electron Starter',
         options: {
+          name: 'badge-scanner',
+          productName: 'badge-scanner'
           //icon: path.join(process.cwd(), 'main', 'images', 'icon.png'),
         },
       }
     },
     {
       name: '@electron-forge/maker-rpm',
-      executableName: "Badge Scanner",
+      executableName: "badge-scanner",
       config: {
-        bin: 'Electron Starter',
-        //icon: path.join(process.cwd(), 'main', 'images', 'icon.png'),
+        options: {
+          name: 'badge-scanner',
+          productName: 'badge-scanner'
+          //icon: path.join(process.cwd(), 'main', 'images', 'icon.png'),
+        },
       }
     },
   ],
