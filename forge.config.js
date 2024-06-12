@@ -4,6 +4,7 @@ const path = require('path');
 
 module.exports = {
   packagerConfig: {
+    executableName: "Badge Scanner",
     asar: true,
     //icon: path.join(process.cwd(), 'main', 'images', 'icon'),
   },
@@ -11,14 +12,17 @@ module.exports = {
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
+      executableName: "Badge Scanner",
       config: {},
     },
     {
       name: '@electron-forge/maker-zip',
+      executableName: "Badge Scanner",
       platforms: ['darwin'],
     },
     {
       name: '@electron-forge/maker-deb',
+      executableName: "Badge Scanner",
       config: {
         bin: 'Electron Starter',
         options: {
@@ -28,6 +32,7 @@ module.exports = {
     },
     {
       name: '@electron-forge/maker-rpm',
+      executableName: "Badge Scanner",
       config: {
         bin: 'Electron Starter',
         //icon: path.join(process.cwd(), 'main', 'images', 'icon.png'),
