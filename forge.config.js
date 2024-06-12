@@ -13,7 +13,7 @@ module.exports = {
     {
       name: '@electron-forge/maker-squirrel',
       executableName: "badge-scanner",
-      onfig: {
+      config: {
         options: {
           name: 'badge-scanner',
           productName: 'badge-scanner'
@@ -25,7 +25,7 @@ module.exports = {
       name: '@electron-forge/maker-zip',
       executableName: "badge-scanner",
       platforms: ['darwin'],
-      onfig: {
+      config: {
         options: {
           name: 'badge-scanner',
           productName: 'badge-scanner'
