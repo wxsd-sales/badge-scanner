@@ -212,7 +212,7 @@ function updateBadgeScanTable() {
   if (!scans) return;
   const rows = scans.map((record) => {
     const tr = document.createElement("tr");
-    const timestamp = document.createElement("th");
+    const timestamp = document.createElement("td");
     timestamp.innerHTML = record.timestamp;
     const code = document.createElement("td");
     code.innerHTML = record.scan;

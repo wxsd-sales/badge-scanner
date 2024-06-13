@@ -217,6 +217,7 @@
               </button>
             </div>
           </div>
+          <button class="modal-close is-large" aria-label="close"></button>
         </div>
       </div>
       <button class="modal-close is-large" aria-label="close"></button>
@@ -251,7 +252,8 @@
       <div class="modal-content">
         <div class="box is-flex is-flex-direction-column is-align-items-center">
           <h4 class="title is-3 pl-3">Previous Badge Scans</h4>
-          <table id="historyTable" class="table is-bordered">
+          <div class="table-container">
+          <table id="historyTable" class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
             <thead >
                 <tr>
                   <th>Time</th>
@@ -284,6 +286,7 @@
             </div>
           </div>
         </div>
+      </div>
       </div>
       <button class="modal-close is-large" aria-label="close"></button>
     </div>
