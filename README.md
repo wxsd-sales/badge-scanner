@@ -18,23 +18,21 @@ Once the identification string had been collected, it is displayed as a pop-up m
 
 ### Prerequisites & Dependencies: 
 
-- Is this dependant on having another repo
-- Insert pre-requisites in bullets
-- Insert pre-requisite here  Also state any assumptions that you may have made about the user.
-- Limit nested bullets
+- RoomOS/CE 11.8 or above Webex Device
+- Web admin access to the device to upload the macro
+- Direct network connectivity from your workstation to your Webex Device for the Web App to directly connect.
+- (optional) Web Server to host a copy of the Web App
+  ```
+  https://wxsd-sales.github.io/badge-scanner/webapp/
+  ```
 
 
-<!-- GETTING STARTED -->
 
 ### Installation Steps:
-1.  Include step one here
-    ```sh
-    insert line of code here if applicable
-    ```
-2.  Insert step two here
-    Insert screenshot, if applicable
-    
-    
+
+UCM Registered Devices Only:
+1. Download the ``badge-scanner-macro.js`` file and upload it to your Webex Room devices Macro editor via the web interface.
+2. No configuration is required from this macro. Simply enable it in the macro editor.    
     
 ## Demo
 
