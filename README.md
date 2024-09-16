@@ -2,7 +2,8 @@
 
 Example Web App which connects to a RoomOS device and monitors for RFID badge scan made by users which are on a call with an agent.
 
-![WebApp Screenshot](/images/screenshot1.png)
+![Badge Scanner](https://github.com/user-attachments/assets/32416f86-6563-46a5-91d8-ca7c027bb990)
+
 
 ## Overview
 
